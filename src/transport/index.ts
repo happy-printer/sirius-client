@@ -1,4 +1,4 @@
-import Bluetooth, { BluetoothTransportConfiguration } from './bluetooth';
+//import Bluetooth, { BluetoothTransportConfiguration } from './bluetooth';
 import USB, { USBTransportConfiguration } from './usb';
 
 export interface TransportAdapter {
@@ -8,9 +8,7 @@ export interface TransportAdapter {
   read(): Promise<Buffer>;
 }
 
-export type TransportConfiguration =
-  | BluetoothTransportConfiguration
-  | USBTransportConfiguration;
+export type TransportConfiguration = USBTransportConfiguration;
 
 const makeTransportAdapter = (
   configuration: TransportConfiguration
@@ -18,8 +16,8 @@ const makeTransportAdapter = (
   switch (configuration.type) {
     case 'usb':
       return new USB(configuration.parameters);
-    case 'bluetooth':
-      return new Bluetooth(configuration.parameters);
+//    case 'bluetooth':
+//      return new Bluetooth(configuration.parameters);
   }
 };
 
